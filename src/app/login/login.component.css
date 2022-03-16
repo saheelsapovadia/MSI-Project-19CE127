@@ -1,0 +1,11 @@
+.login-container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.login-box {
+  /* background-color: rgb(166, 166, 228); */
+  padding: 45px 25px;
+  border-radius: 10px;
+}

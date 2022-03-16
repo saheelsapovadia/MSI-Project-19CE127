@@ -1,0 +1,41 @@
+<div class="login-container">
+  <div class="login-box">
+    <form
+      class="example-form"
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+        margin-top: 10px;
+      "
+    >
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          [(ngModel)]="username"
+          placeholder="Enter your username"
+          style="width: 80%"
+          name="username"
+        />
+      </mat-form-field>
+      <p class="username-error"></p>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [(ngModel)]="password"
+          placeholder="Enter your username"
+          style="width: 80%"
+          name="password"
+        />
+      </mat-form-field>
+      <p class="password-error"></p>
+      <button mat-raised-button color="primary" (click)="login()">
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
