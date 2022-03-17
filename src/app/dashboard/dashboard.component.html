@@ -1,2 +1,49 @@
 <p>dashboard works!</p>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav
+    #sidenav
+    mode="over"
+    [(opened)]="opened"
+    (opened)="events.push('open!')"
+    (closed)="events.push('close!')"
+  >
+    <mat-list>
+      <mat-list-item> Hello Saheel! </mat-list-item>
+    </mat-list>
+    <mat-action-list class="sidebar-list">
+      <button mat-list-item>Pending Requests</button>
+      <button mat-list-item>My Team</button>
+    </mat-action-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        (click)="sidenav.toggle()"
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Dashboard</span>
+      <span class="example-spacer"></span>
+      <button
+        mat-icon-button
+        class="example-icon favorite-icon"
+        aria-label="Example icon-button with heart icon"
+      >
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with share icon"
+      >
+        <mat-icon>share</mat-icon>
+      </button>
+    </mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
 <a routerLink="/">Back</a>

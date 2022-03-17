@@ -9,6 +9,9 @@ export class DashboardComponent implements OnInit {
 
   constructor() { }
 
+  events: string[] = [];
+  opened: boolean = true;
+  
   ngOnInit(): void {
   }
 
