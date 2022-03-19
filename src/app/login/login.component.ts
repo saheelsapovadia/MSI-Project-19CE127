@@ -32,7 +32,8 @@ export class LoginComponent implements OnInit {
       console.log(data.body)
       if(data.body){
         let token = data.body.token;
-        console.log("toekn", token)
+        console.log("token", token)
+        localStorage.setItem("jwtToken", token);
         token ? this.router.navigate(['/dashboard']) : null;
       }else alert(data.body)
     }, error => {
