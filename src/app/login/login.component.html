@@ -1,6 +1,7 @@
 <div class="login-container">
   <div class="login-box">
     <form
+      [formGroup]="loginForm"
       class="example-form"
       style="
         display: flex;
@@ -11,28 +12,45 @@
       "
     >
       <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Username</mat-label>
+        <mat-label>Email</mat-label>
         <input
           matInput
-          [(ngModel)]="username"
-          placeholder="Enter your username"
+          formControlName="email"
+          placeholder="Enter your email"
           style="width: 80%"
           name="username"
         />
       </mat-form-field>
-      <p class="username-error"></p>
+      <mat-error
+        class="error"
+        *ngIf="errorValidation('email', 'required') && email?.touched"
+        >Email is required</mat-error
+      >
+      <mat-error
+        class="error"
+        *ngIf="errorValidation('email', 'email') && email?.touched"
+        >Email is invalid</mat-error
+      >
 
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field class="example-full-width form-field" appearance="fill">
         <mat-label>Password</mat-label>
         <input
           matInput
-          [(ngModel)]="password"
+          formControlName="password"
           placeholder="Enter your username"
           style="width: 80%"
           name="password"
+          [type]="showPassword ? 'text' : 'password'"
         />
+        <mat-icon (click)="showPasswordToggle()">
+          {{ !showPassword ? "visibility_off" : "visibility" }}
+        </mat-icon>
       </mat-form-field>
-      <p class="password-error"></p>
+      <mat-error
+        class="error"
+        *ngIf="errorValidation('password', 'required') && password?.touched"
+        >Password is required</mat-error
+      >
       <button mat-raised-button color="primary" (click)="login()">
         Submit
       </button>

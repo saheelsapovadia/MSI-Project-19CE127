@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BackendService } from '../backend.service';
 import { Router, ActivatedRoute } from '@angular/router';
 @Component({
@@ -9,12 +9,28 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  title = 'ng-api';
+loginForm = new FormGroup({
+  email : new FormControl('', [Validators.required, Validators.email]),
+  password : new FormControl('', Validators.required),
+})
+
+get email(){return this.loginForm.get('email')}
+get password(){return this.loginForm.get('password')}
+  
+errorValidation(controlName:string, errorName:string){
+  return this.loginForm.controls[controlName].hasError(errorName)
+}
+
+title = 'Motorola Project Mapping';
   data:any = {}
-  username =''
-  password=''
+  showPassword:boolean = false;
   usernameError = ""
   passwordError = ""
+
+showPasswordToggle(){
+  this.showPassword = !this.showPassword
+}
+
   constructor(private _backendAPI: BackendService, private route : ActivatedRoute, private router : Router){
 
   }
@@ -22,13 +38,13 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     
   }
-  test(){
-    console.log("submiting..")
-    console.log(this.username," ", this.password)
-  }
+  // test(){
+  //   console.log("submiting..")
+  //   console.log(this.username," ", this.password)
+  // }
 
   login(){
-    this._backendAPI.login(this.username, this.password).subscribe((data:any) => {
+    this._backendAPI.login(this.email, this.password).subscribe((data:any) => {
       console.log(data.body)
       if(data.body){
         let token = data.body.token;
@@ -42,7 +58,7 @@ export class LoginComponent implements OnInit {
     })
   }
   register(){
-    this._backendAPI.register(this.username, this.password).subscribe(data => {
+    this._backendAPI.register(this.email, this.password).subscribe(data => {
       alert(data.status);
       console.log(data)
     }, error => {
