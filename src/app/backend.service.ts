@@ -10,12 +10,13 @@ export class BackendService {
 
    }
 
-   login(username:any, password:any){
-     let response = this.http.post(this.URI+'/login',{username:username, password: password},{observe: 'response'})
+   login(email:any, password:any){
+     console.log(email, password)
+     let response = this.http.post(this.URI+'/login',{email:email, password: password},{observe: 'response'})
      return response;
    }
-   register(username:any, password:any){
-     let response = this.http.post(this.URI+'/register',{username:username, password: password},{observe: 'response'})
+   register(email:any, password:any){
+     let response = this.http.post(this.URI+'/register',{email:email, password: password},{observe: 'response'})
      return response;
    }
 }

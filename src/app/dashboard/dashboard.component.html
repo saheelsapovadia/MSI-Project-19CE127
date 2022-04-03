@@ -3,7 +3,7 @@
   <mat-sidenav
     #sidenav
     mode="over"
-    [(opened)]="opened"
+    [opened]="opened"
     (opened)="events.push('open!')"
     (closed)="events.push('close!')"
   >
@@ -32,15 +32,16 @@
         mat-icon-button
         class="example-icon favorite-icon"
         aria-label="Example icon-button with heart icon"
+        (click)="logout()"
       >
-        <mat-icon>favorite</mat-icon>
+        <mat-icon>logout</mat-icon>
       </button>
       <button
         mat-icon-button
         class="example-icon"
         aria-label="Example icon-button with share icon"
       >
-        <mat-icon>share</mat-icon>
+        <mat-icon>person</mat-icon>
       </button>
     </mat-toolbar>
   </mat-sidenav-content>

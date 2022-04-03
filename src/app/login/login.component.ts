@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BackendService } from '../backend.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -31,7 +33,7 @@ showPasswordToggle(){
   this.showPassword = !this.showPassword
 }
 
-  constructor(private _backendAPI: BackendService, private route : ActivatedRoute, private router : Router){
+  constructor(private _backendAPI: BackendService, private route : ActivatedRoute, private router : Router, private _snackBar: MatSnackBar){
 
   }
 
@@ -44,13 +46,19 @@ showPasswordToggle(){
   // }
 
   login(){
-    this._backendAPI.login(this.email, this.password).subscribe((data:any) => {
+    this._backendAPI.login(this.email?.value, this.password?.value).subscribe((data:any) => {
       console.log(data.body)
       if(data.body){
+        
         let token = data.body.token;
         console.log("token", token)
-        localStorage.setItem("jwtToken", token);
-        token ? this.router.navigate(['/dashboard']) : null;
+        if(token == null){
+          console.log("opening snackbaar...")
+          this._snackBar.open(data.body.message, "Cancel");
+        }else{
+          localStorage.setItem("jwtToken", token);
+          token ? this.router.navigate(['/dashboard']) : null;
+        }
       }else alert(data.body)
     }, error => {
       alert("Incorrect Credentials")
@@ -65,5 +73,7 @@ showPasswordToggle(){
       console.log(error)
     })
   }
+
+  
 
 }

@@ -15,6 +15,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon'
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import {MatSnackBarModule} from '@angular/material/snack-bar'
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import {MatListModule} from '@angular/material/list';
      MatIconModule,
      MatSidenavModule,
      MatListModule,
-     BrowserAnimationsModule
+     BrowserAnimationsModule,
+     MatSnackBarModule
   ],
   providers: [MarvelapiService],
   bootstrap: [AppComponent]

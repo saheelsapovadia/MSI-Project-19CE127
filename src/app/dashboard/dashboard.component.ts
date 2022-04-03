@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -7,12 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route : ActivatedRoute, private router : Router) { }
 
   events: string[] = [];
-  opened: boolean = true;
+  opened: boolean = false;
   
   ngOnInit(): void {
+  }
+
+  logout(){
+    localStorage.removeItem("jwtToken");
+     this.router.navigate([""]) 
   }
 
 }
