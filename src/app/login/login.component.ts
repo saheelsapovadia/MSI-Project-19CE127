@@ -54,14 +54,16 @@ showPasswordToggle(){
         console.log("token", token)
         if(token == null){
           console.log("opening snackbaar...")
-          this._snackBar.open(data.body.message, "Cancel");
+          this._snackBar.open(data.body.message, "Cancel", {
+  duration: 2500
+});
         }else{
           localStorage.setItem("jwtToken", token);
           token ? this.router.navigate(['/dashboard']) : null;
         }
       }else alert(data.body)
     }, error => {
-      alert("Incorrect Credentials")
+      alert("Couldn't connect to the server, check you internet connection")
       console.log(error)
     })
   }

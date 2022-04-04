@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MarvelapiService } from './marvelapi.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
@@ -16,6 +16,7 @@ import {MatIconModule} from '@angular/material/icon'
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatSnackBarModule} from '@angular/material/snack-bar'
+import { HttpTokenInterceptorService } from './http-token-interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar'
      BrowserAnimationsModule,
      MatSnackBarModule
   ],
-  providers: [MarvelapiService],
+  providers: [MarvelapiService, {
+    provide:HTTP_INTERCEPTORS,
+    useClass: HttpTokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
