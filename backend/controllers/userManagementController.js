@@ -1,10 +1,5 @@
 const bcrypt = require("bcrypt");
-const { reject } = require("bcrypt/promises");
-const { response } = require("express");
 const jwt = require("jsonwebtoken");
-const { user } = require("pg/lib/defaults");
-const { fetchPassword } = require("../database");
-const Pool = require("pg").Pool;
 const privateKey = "saheel";
 const client = require("../Database/database");
 // const loginFunc = new Promise((resolve, reject) => {});
@@ -54,90 +49,6 @@ class userManagement {
       res.json({ message: "Username and password not entered correctly" });
     }
   };
-  // checkForUser = async (username, password) =>
-  //   new Promise((resolve, reject) => {
-  //     if (username && password) {
-  //       console.log("checking for user..");
-  //       const pool = new Pool({
-  //         host: "localhost",
-  //         user: "postgres",
-  //         database: "motorola",
-  //         password: "root",
-  //         port: 5432,
-  //       });
-  //       // let userExists = true;
-  //       const query1 = "Select username from users where username=$1";
-  //       pool.connect(async (err, client, done) => {
-  //         if (err) throw err;
-  //         // try {
-  //         await client.query(query1, [username], (err, rese) => {
-  //           if (err) {
-  //             console.log(err.stack);
-  //           } else {
-  //             // console.log(rese.rowCount);
-  //             if (rese.rowCount == 0) {
-  //               console.log("No such user found");
-  //               reject({ errorCode: 101, message: "No such user found" });
-  //               // userExists = false;
-  //               return;
-  //             } else {
-  //               console.log("Checkpost 1 cleared");
-  //               resolve("User exists");
-  //               this.checkForPassword(username, password).then((res) =>
-  //                 resolve(res)
-  //               );
-  //             }
-  //           }
-  //         });
-  //         // } finally {
-  //         //   done();
-  //         // }
-  //       });
-  //     } else reject("Username and Password not received");
-  //   });
-
-  // checkForPassword = async (username, password) =>
-  //   new Promise((resolve, reject) => {
-  //     let hash = "";
-
-  //     let hashed_pass = [];
-
-  //     console.log("Checking for passwords");
-  //     const query = "Select password from users where username=$1";
-  //     pool.connect(async (err, client, done) => {
-  //       if (err) {
-  //         throw err;
-  //         reject(err);
-  //       }
-  //       try {
-  //         await client.query(query, [username], (err, rese) => {
-  //           if (err) {
-  //             console.log(err.stack);
-  //           } else {
-  //             hashed_pass = rese.rows;
-  //             hash = hashed_pass[0].password;
-  //             // console.log("inputing hashhh", hash);
-  //             let check = bcrypt.compareSync(password, hash);
-  //             // console.log("Checking  ", check);
-  //             if (check) {
-  //               let token = jwt.sign({ username: username }, privateKey, {
-  //                 expiresIn: "5s",
-  //               });
-  //               console.log("Checkpost 2 cleared");
-
-  //               resolve({ token: token });
-  //             } else return res.json("error");
-  //           }
-  //         });
-  //       } finally {
-  //         done();
-  //       }
-  //     });
-  //   });
-
-  // login = (req, res) => {
-  //   res.json(await this.checkForUser(req.body.username, req.body.password));
-  // };
 
   passwordCheck = (email, password) => {
     return new Promise((resolve, reject) => {
@@ -214,5 +125,7 @@ class userManagement {
       });
     }
   };
+
+  dashboard = (req, res) => {};
 }
 module.exports = userManagement;

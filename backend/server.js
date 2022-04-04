@@ -8,9 +8,6 @@ app.use(express.json());
 const loginRoute = require("./routes/routes");
 const { loadData, deleteData, fetchPassword } = require("./database");
 
-// deleteData();
-// loadData();
-// console.log(fetchPassword("saheel"));
 app.use("/", loginRoute);
 app.post("/setresources", (res, req) => {
   deleteData();
