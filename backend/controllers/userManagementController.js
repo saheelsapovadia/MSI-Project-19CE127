@@ -13,7 +13,7 @@ class userManagement {
         //check if user exists in db
         console.log("checking for user..", email);
 
-        const query1 = "Select username from users where username=$1";
+        const query1 = "Select username from users where email=$1";
 
         client.query(query1, [email], (err, rese) => {
           if (err) {
@@ -54,24 +54,28 @@ class userManagement {
     return new Promise((resolve, reject) => {
       let hash = "";
 
-      let hashed_pass = [];
+      let result = [];
       console.log("Checking for passwords");
-      const query = "Select password from users where username=$1";
+      const query = "Select * from users where email=$1";
 
       client.query(query, [email], (err, rese) => {
         if (err) {
           console.log(err.stack);
           reject({ errorCode: 102, message: "Unknown Exception" });
         } else {
-          hashed_pass = rese.rows;
-          hash = hashed_pass[0].password;
+          result = rese.rows;
+          hash = result[0].password;
           // console.log("inputing hashhh", hash);
           let check = bcrypt.compareSync(password, hash);
           // console.log("Checking  ", check);
           if (check) {
-            let token = jwt.sign({ email: email }, privateKey, {
-              expiresIn: "5s",
-            });
+            let token = jwt.sign(
+              { email: email, user: result[0].username },
+              privateKey,
+              {
+                expiresIn: "5s",
+              }
+            );
             console.log("Checkpost 2 cleared");
             console.log("token", token);
             return resolve(token);
@@ -125,6 +129,8 @@ class userManagement {
       });
     }
   };
+
+  getUserInfo = () => {};
 
   dashboard = (req, res) => {};
 }
