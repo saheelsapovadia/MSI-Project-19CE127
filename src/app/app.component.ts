@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MarvelapiService } from './marvelapi.service';
-import { FormControl } from '@angular/forms';
 import { BackendService } from './backend.service';
 @Component({
   selector: 'app-root',
@@ -17,29 +15,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-//     console.log("App onInIt")
-//     this._marvelApiService.getCharacters().subscribe(
-//       a => {
-// console.log("subscribe data",a);
-// this.data = a;
-// console.log("Data from service",this.data)
-//       },
-//       error => {  
-//         console.error("subscribe error",error.error.message);
-//       }
-    // )  
 
-    
-
-    // const a = this._marvelApiService.getCharacters().toPromise()
-    // .then(res => {
-    //   console.log("res", res);
-    //   this.data = res;
-    //   console.log("Data from service",this.data)
-    // }).catch(err => {
-    //   console.log("err",err);
-    // })
-    // console.log(a);
   }
 
 

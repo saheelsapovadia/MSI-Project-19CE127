@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { Router, ActivatedRoute } from '@angular/router';
 import { JwtHelperService } from "@auth0/angular-jwt";
 @Component({
@@ -16,6 +17,7 @@ export class DashboardComponent implements OnInit {
   helper:any;
   decodedToken:any;
   username:any;
+  currentPage:any = 'Dashboard'
   ngOnInit(): void {
     console.log("dashboard")
   this.token = localStorage.getItem("jwtToken")
@@ -30,6 +32,13 @@ export class DashboardComponent implements OnInit {
   logout(){
     localStorage.removeItem("jwtToken");
      this.router.navigate([""]) 
+  }
+  navigate(route:String, sidenav:any){
+    this.currentPage = route;
+    sidenav.toggle()
+  console.log("navigating to",route)
+  
+    this.router.navigate(["dashboard/"+route])
   }
 
 }
