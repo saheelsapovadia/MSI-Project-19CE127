@@ -1,0 +1,19 @@
+.project-container{
+    margin-top: 25px;
+    width: 80%;
+    margin-left: 10%;
+}
+
+table {
+    width: 100%;
+    /* margin-bottom: 50px; */
+}
+.project-btn{
+    display: flex;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+.project-btn button{
+    margin : 10px
+}

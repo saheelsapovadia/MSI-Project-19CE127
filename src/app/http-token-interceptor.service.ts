@@ -19,7 +19,6 @@ export class HttpTokenInterceptorService implements HttpInterceptor{
     }else{
       tokenizedReq = req.clone();
     }
-
     return next.handle(tokenizedReq)
   }
 }

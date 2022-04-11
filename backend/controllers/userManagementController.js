@@ -1,17 +1,17 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const privateKey = "saheel";
-const client = require("../Database/database");
+const { client } = require("../Database/database");
 // const loginFunc = new Promise((resolve, reject) => {});
 
 class userManagement {
   func = (res, req) => {
     return new Promise((resolve, reject) => {
-      console.log(req.body);
+      console.log("func", req.body);
       let { email, password } = req.body;
       if (email && password) {
         //check if user exists in db
-        console.log("checking for user..", email);
+        console.log("func checking for user..", email);
 
         const query1 = "Select username from users where email=$1";
 
@@ -67,7 +67,7 @@ class userManagement {
           hash = result[0].password;
           // console.log("inputing hashhh", hash);
           let check = bcrypt.compareSync(password, hash);
-          // console.log("Checking  ", check);
+          console.log("Checking  ", check);
           if (check) {
             let token = jwt.sign(
               { email: email, user: result[0].username },
@@ -108,7 +108,8 @@ class userManagement {
             }
           );
         },
-        () => {
+        (data) => {
+          console.log("reject", data);
           return res.json({ message: "Email doesn't exist" });
         }
       );

@@ -14,6 +14,6 @@ router.get("/getprojects", projectManagement.getAllProjects);
 // @route   POST addproject
 // @desc    Add new project
 // @access  Private
-router.get("/addproject", projectManagement.addProject);
+router.post("/addproject", projectManagement.addProject);
 
 module.exports = router;

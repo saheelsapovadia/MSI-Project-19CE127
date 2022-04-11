@@ -1,0 +1,78 @@
+<h mat-dialog-title>Add Project</h>
+<div mat-dialog-content>
+  <form [formGroup]="projectForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Project Name</mat-label>
+      <input
+        formControlName="projectName"
+        matInput
+        placeholder="Enter your name"
+      />
+      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Department Code</mat-label>
+      <input
+        formControlName="departmentCode"
+        matInput
+        placeholder="Enter your Dept Code"
+      />
+      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Users</mat-label>
+      <input
+        formControlName="users"
+        matInput
+        placeholder="Enter your Users, Comma seperated"
+      />
+      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Product</mat-label>
+      <input
+        formControlName="product"
+        matInput
+        placeholder="Enter your Product"
+      />
+      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    </mat-form-field>
+
+    <div>
+      <mat-label>Status</mat-label>
+      <mat-radio-group formControlName="status" aria-label="Select an option">
+        <mat-radio-button value="1">Active</mat-radio-button>
+        <mat-radio-button value="2">Inactive</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>CIE Area ID</mat-label>
+      <input
+        formControlName="cieAreaId"
+        matInput
+        placeholder="Enter your CIE Id"
+      />
+      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Finance Product Id</mat-label>
+      <input
+        formControlName="financeProductId"
+        matInput
+        placeholder="Enter your Finance Id"
+      />
+      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-action [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    style="margin-left: 10px"
+    (click)="addProject()"
+  >
+    Submit
+  </button>
+</div>

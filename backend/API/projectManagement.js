@@ -28,7 +28,7 @@ class ProjectManagement {
       financeproductid
     );
 
-    const newProject = pool.query(
+    const newProject = await pool.query(
       "insert into projects(id, projectname, deptcode, users, product, status, cieareaid, financeproductid) values($1,$2,$3,$4,$5,$6,$7,$8) Returning *",
       [
         id,
@@ -41,7 +41,11 @@ class ProjectManagement {
         financeproductid,
       ]
     );
-    res.json(newProject);
+    console.log("new", newProject.rows[0]);
+    res.json({
+      message: "Project added successfully",
+      data: newProject.rows[0],
+    });
   };
 
   getAllProjects = async (req, res) => {

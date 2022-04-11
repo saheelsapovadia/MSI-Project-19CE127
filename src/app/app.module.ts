@@ -17,11 +17,23 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatSnackBarModule} from '@angular/material/snack-bar'
 import { HttpTokenInterceptorService } from './http-token-interceptor.service';
+import { MatTableModule } from '@angular/material/table'  
+import { BottomsheetComponent } from './projectmanagement/projects/bottomsheet/bottomsheet.component';
+import { ProjectComponent } from './project/project.component';
+import { AddProjectComponent } from './add-project/add-project.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatRadioModule} from '@angular/material/radio';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    BottomsheetComponent,
+    ProjectComponent,
+    AddProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +41,7 @@ import { HttpTokenInterceptorService } from './http-token-interceptor.service';
      HttpClientModule,
      MatButtonModule,
      FormsModule,
+     MatTableModule,
      ReactiveFormsModule,
      MatInputModule,
      MatToolbarModule,
@@ -36,7 +49,12 @@ import { HttpTokenInterceptorService } from './http-token-interceptor.service';
      MatSidenavModule,
      MatListModule,
      BrowserAnimationsModule,
-     MatSnackBarModule
+     MatSnackBarModule,
+     MatDialogModule,
+     MatChipsModule,
+     MatRadioModule,
+     MatPaginatorModule,
+     MatSortModule
   ],
   providers: [MarvelapiService, {
     provide:HTTP_INTERCEPTORS,
