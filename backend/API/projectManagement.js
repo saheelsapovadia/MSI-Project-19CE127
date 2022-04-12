@@ -1,11 +1,21 @@
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const { Client } = require("pg");
-const privateKey = "saheel";
+const { async } = require("rxjs");
 const { client, pool } = require("../Database/database");
-// const loginFunc = new Promise((resolve, reject) => {});
 
 class ProjectManagement {
+  getAllProjects = async (req, res) => {
+    let query = "Select * from projects";
+    let projects = await client.query(query, (error, data) => {
+      if (error) {
+        console.log("error", error);
+        res.json({ errorCode: 201, message: "Error in fetching the projects" });
+      } else {
+        console.log("projects", data.rows);
+        res.json(data.rows);
+      }
+    });
+    console.log("logging results..");
+  };
+
   addProject = async (req, res) => {
     let {
       id,
@@ -48,19 +58,11 @@ class ProjectManagement {
     });
   };
 
-  getAllProjects = async (req, res) => {
-    let query = "Select * from projects";
-    let projects = await client.query(query, (error, data) => {
-      if (error) {
-        console.log("error", error);
-        res.json({ errorCode: 201, message: "Error in fetching the projects" });
-      } else {
-        console.log("projects", data.rows);
-        // return data.rows;
-        res.json(data.rows);
-      }
-    });
-    console.log("logging results..");
+  uploadBulkProjects = (req, res) => {
+    let file = req["files"].files;
+    console.log(file);
+    console.log("File uploaded: ", file.name);
+    res.sendStatus(200);
   };
 }
 

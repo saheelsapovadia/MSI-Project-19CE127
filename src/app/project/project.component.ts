@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddProjectComponent } from '../add-project/add-project.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { UploadBulkProjectDialogComponent } from '../upload-bulk-project-dialog/upload-bulk-project-dialog.component';
 export interface Project {
   id: number;
   projectname: string;
@@ -55,8 +56,14 @@ export class ProjectComponent implements OnInit {
     }
   }
 
-  openDialog() {
+  openAddDialog() {
     this.dialog.open(AddProjectComponent, {
+      data: {},
+      width: '30%',
+    });
+  }
+  openBulkDialog() {
+    this.dialog.open(UploadBulkProjectDialogComponent, {
       data: {},
       width: '30%',
     });

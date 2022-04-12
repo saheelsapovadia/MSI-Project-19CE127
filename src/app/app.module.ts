@@ -26,6 +26,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatRadioModule} from '@angular/material/radio';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { UploadBulkProjectDialogComponent } from './upload-bulk-project-dialog/upload-bulk-project-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import { MatSortModule } from '@angular/material/sort';
     LoginComponent,
     BottomsheetComponent,
     ProjectComponent,
-    AddProjectComponent
+    AddProjectComponent,
+    UploadBulkProjectDialogComponent
   ],
   imports: [
     BrowserModule,

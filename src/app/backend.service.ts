@@ -58,4 +58,7 @@ export class BackendService {
     );
     return response;
   }
+  uploadBulkProject(formData:any){
+return this.http.post(this.URI + '/dashboard/uploadbulkproject', formData);
+  }
 }

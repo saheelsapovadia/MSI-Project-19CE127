@@ -1,0 +1,27 @@
+<div class="bulk-container">
+  <p class="title">Upload CSV file to Bulk import</p>
+  <input
+    type="file"
+    class="file-input"
+    (change)="fileChange($event)"
+    #fileUpload
+  />
+
+  <div class="file-upload">
+    <p class="file-name">
+      {{ fileName || "No file uploaded yet." }}
+    </p>
+
+    <button
+      mat-mini-fab
+      color="primary"
+      class="upload-btn"
+      (click)="fileUpload.click()"
+    >
+      <mat-icon>attach_file</mat-icon>
+    </button>
+  </div>
+  <button class="upload" mat-raised-button color="primary" (click)="upload()">
+    Upload
+  </button>
+</div>
