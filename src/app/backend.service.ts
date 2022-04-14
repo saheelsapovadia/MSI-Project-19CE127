@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { JwtHelperService } from '@auth0/angular-jwt';
 @Injectable({
   providedIn: 'root',
 })
 export class BackendService {
   URI: string = 'http://localhost:5000';
-
+  token: any;
+  helper: any;
+  decodedToken: any;
+  username: any;
   constructor(private http: HttpClient) {}
 
   login(email: any, password: any) {
@@ -58,7 +62,14 @@ export class BackendService {
     );
     return response;
   }
-  uploadBulkProject(formData:any){
-return this.http.post(this.URI + '/dashboard/uploadbulkproject', formData);
+  uploadBulkProject(formData: any) {
+    this.token = localStorage.getItem('jwtToken');
+    this.helper = new JwtHelperService();
+    this.decodedToken = this.helper.decodeToken(this.token);
+    this.username = this.decodedToken.user.split(' ')[0];
+    return this.http.post(this.URI + '/dashboard/uploadbulkproject', 
+      formData,
+      
+    );
   }
 }

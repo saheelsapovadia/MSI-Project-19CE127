@@ -1,7 +1,6 @@
 const fs = require("fs");
 const Pool = require("pg").Pool;
 const fastcsv = require("fast-csv");
-let stream = fs.createReadStream("./resources.csv");
 const ErrorMessage = require("./Classes/ErrorMessage");
 let csvData = [];
 let bulkImportLogs = {
@@ -10,7 +9,8 @@ let bulkImportLogs = {
   failed: 0,
   failedRowList: [],
 };
-const loadData = () => {
+const loadData = (filename) => {
+  let stream = fs.createReadStream("./uploads/" + filename);
   let csvStream = fastcsv
     .parse()
     .on("data", function (data) {
@@ -28,7 +28,8 @@ const loadData = () => {
         port: 5432,
       });
       const query =
-        "INSERT INTO resource_allocation (id, employee_id, team, resource_id) VALUES ($1, $2, $3, $4)";
+        "insert into projects(id, projectname, deptcode, users, product, status, cieareaid, financeproductid) values($1,$2,$3,$4,$5,$6,$7,$8) Returning *";
+
       pool.connect((err, client, done) => {
         if (err) throw err;
         try {
@@ -42,6 +43,7 @@ const loadData = () => {
                 bulkImportLogs.failedRowList.push(Error);
                 console.log(bulkImportLogs);
               } else {
+                console.log(row);
                 console.log("inserted " + res.rowCount + " row:", row);
                 bulkImportLogs.successfullyInserted++;
                 console.log(bulkImportLogs);

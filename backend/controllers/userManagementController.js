@@ -71,10 +71,7 @@ class userManagement {
           if (check) {
             let token = jwt.sign(
               { email: email, user: result[0].username },
-              privateKey,
-              {
-                expiresIn: "5s",
-              }
+              privateKey
             );
             console.log("Checkpost 2 cleared");
             console.log("token", token);
