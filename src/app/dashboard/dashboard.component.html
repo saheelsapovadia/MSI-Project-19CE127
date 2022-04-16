@@ -11,12 +11,14 @@
         <mat-list-item> Hello {{ username }} </mat-list-item>
       </mat-list>
       <mat-action-list class="sidebar-list">
-        <button mat-list-item>My Team</button>
-        <button mat-list-item (click)="navigate('users', sidenav)">
-          Users
+        <button mat-list-item (click)="cardClick('Dashboard', sidenav)">
+          Dashboard
         </button>
         <button mat-list-item (click)="navigate('projects', sidenav)">
           Projects
+        </button>
+        <button mat-list-item (click)="navigate('users', sidenav)">
+          Users
         </button>
         <button mat-list-item (click)="navigate('users', sidenav)">
           Requests
@@ -52,6 +54,31 @@
           <mat-icon>person</mat-icon>
         </button>
       </mat-toolbar>
+      <div class="dashboard-main" *ngIf="currentPage == 'Dashboard'">
+        <div class="dash-cards">
+          <mat-card
+            class="example-card"
+            (click)="cardClick('projects', sidenav)"
+          >
+            <mat-card-title-group>
+              <mat-card-title>Explore all Projects</mat-card-title>
+            </mat-card-title-group>
+            <mat-card-content> </mat-card-content>
+          </mat-card>
+          <mat-card class="example-card" (click)="cardClick('users', sidenav)">
+            <mat-card-title-group>
+              <mat-card-title>Manage Users</mat-card-title>
+            </mat-card-title-group>
+            <mat-card-content> </mat-card-content>
+          </mat-card>
+          <mat-card class="example-card">
+            <mat-card-title-group>
+              <mat-card-title>Pending Requests</mat-card-title>
+            </mat-card-title-group>
+            <mat-card-content> </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>

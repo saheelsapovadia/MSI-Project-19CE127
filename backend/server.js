@@ -63,7 +63,7 @@ app.post(
       loadData(decoded.user.split(" ")[0] + req.file.originalname);
     });
     res.json({
-      message: `${req.file}` + " uploaded succesfully.",
+      message: `${req.file.originalname}` + " uploaded succesfully.",
     });
   }
 );

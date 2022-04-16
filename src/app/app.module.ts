@@ -27,6 +27,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { UploadBulkProjectDialogComponent } from './upload-bulk-project-dialog/upload-bulk-project-dialog.component';
+import {MatCardModule} from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,9 @@ import { UploadBulkProjectDialogComponent } from './upload-bulk-project-dialog/u
      MatChipsModule,
      MatRadioModule,
      MatPaginatorModule,
-     MatSortModule
+     MatSortModule,
+     MatCardModule
+
   ],
   providers: [MarvelapiService, {
     provide:HTTP_INTERCEPTORS,

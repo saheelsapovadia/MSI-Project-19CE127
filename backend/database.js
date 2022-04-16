@@ -2,6 +2,7 @@ const fs = require("fs");
 const Pool = require("pg").Pool;
 const fastcsv = require("fast-csv");
 const ErrorMessage = require("./Classes/ErrorMessage");
+const { pool } = require("./Database/database");
 let csvData = [];
 let bulkImportLogs = {
   totalData: 0,
@@ -10,7 +11,10 @@ let bulkImportLogs = {
   failedRowList: [],
 };
 const loadData = (filename) => {
+  console.log("filename ", filename);
   let stream = fs.createReadStream("./uploads/" + filename);
+  // let stream = fs.createReadStream("../resources.csv");
+  // let stream = fs.createReadStream("../dummyData.csv");
   let csvStream = fastcsv
     .parse()
     .on("data", function (data) {
@@ -19,14 +23,6 @@ const loadData = (filename) => {
     .on("end", function () {
       // remove the first line: header
       csvData.shift();
-      // create a new connection to the database
-      const pool = new Pool({
-        host: "localhost",
-        user: "postgres",
-        database: "motorola",
-        password: "root",
-        port: 5432,
-      });
       const query =
         "insert into projects(id, projectname, deptcode, users, product, status, cieareaid, financeproductid) values($1,$2,$3,$4,$5,$6,$7,$8) Returning *";
 
@@ -34,7 +30,9 @@ const loadData = (filename) => {
         if (err) throw err;
         try {
           bulkImportLogs.totalData = csvData.length;
+          console.log("csvdata", csvData);
           csvData.forEach((row, index) => {
+            console.log("row ", index, " : ", row, row.length);
             client.query(query, row, (err, res) => {
               if (err) {
                 // console.log(err.message);

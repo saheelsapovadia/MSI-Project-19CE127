@@ -1,4 +1,7 @@
 <div class="project-container">
+  <button class="export-btn" mat-raised-button color="primary">
+    Export <mat-icon>download</mat-icon>
+  </button>
   <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
     <input
@@ -8,6 +11,14 @@
       #input
     />
   </mat-form-field>
+  <button
+    mat-icon-button
+    color="primary"
+    aria-label="Example icon button with a home icon"
+    (click)="refreshData()"
+  >
+    <mat-icon>refresh</mat-icon>
+  </button>
   <div class="mat-elevation-z8">
     <table
       mat-table

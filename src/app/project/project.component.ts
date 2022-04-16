@@ -48,6 +48,15 @@ export class ProjectComponent implements OnInit {
       this.dataSource.sort = this.sort;
     });
   }
+
+  refreshData(){
+    this._backend.getProjects().subscribe((data: any) => {
+      console.log(data);
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

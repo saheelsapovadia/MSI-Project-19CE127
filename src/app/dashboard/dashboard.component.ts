@@ -40,6 +40,14 @@ export class DashboardComponent implements OnInit {
   
     this.router.navigate(["dashboard/"+route])
   }
+  cardClick(route:String,sidenav:any){
+    this.currentPage = route;
+    if(route == 'Dashboard'){
+      sidenav.toggle()
+      this.router.navigate(["dashboard/"])
+    } 
+    else this.router.navigate(["dashboard/"+route])
+  }
 
 }
 function myRawToken(myRawToken: any): any {
