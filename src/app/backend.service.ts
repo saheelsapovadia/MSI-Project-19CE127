@@ -69,7 +69,9 @@ export class BackendService {
     this.username = this.decodedToken.user.split(' ')[0];
     return this.http.post(this.URI + '/dashboard/uploadbulkproject', 
       formData,
-      
     );
+  }
+  exportBulkProject(){
+    return this.http.get(this.URI + '/dashboard/exportbulkprojects');
   }
 }

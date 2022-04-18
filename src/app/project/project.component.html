@@ -1,5 +1,10 @@
 <div class="project-container">
-  <button class="export-btn" mat-raised-button color="primary">
+  <button
+    class="export-btn"
+    mat-raised-button
+    color="primary"
+    (click)="exportBulkProjects()"
+  >
     Export <mat-icon>download</mat-icon>
   </button>
   <mat-form-field appearance="standard">

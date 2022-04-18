@@ -57,6 +57,11 @@ export class ProjectComponent implements OnInit {
       this.dataSource.sort = this.sort;
     });
   }
+  exportBulkProjects(){
+    this._backend.exportBulkProject().subscribe((data:any) => {
+      console.log("export", data)
+    })
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -77,4 +82,5 @@ export class ProjectComponent implements OnInit {
       width: '30%',
     });
   }
+
 }

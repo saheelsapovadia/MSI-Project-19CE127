@@ -38,7 +38,6 @@ const storage = multer.diskStorage({
       console.log("username", decoded);
       cb(null, decoded.user.split(" ")[0] + file.originalname);
     });
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
     // cb(null, file.fieldname + "-" + uniqueSuffix);
   },
 });
