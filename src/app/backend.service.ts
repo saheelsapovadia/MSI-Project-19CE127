@@ -74,4 +74,34 @@ export class BackendService {
   exportBulkProject(){
     return this.http.get(this.URI + '/dashboard/exportbulkprojects');
   }
+  deleteProject(id:any){
+    console.log('backend delete', id)
+    return this.http.post(this.URI+'/dashboard/deleteproject', {id:id},{ observe: 'response' });
+  }
+  updateProject(res:any, id:any){
+    console.log('res', res)
+     let data = {
+      id: id,
+      projectname: res.projectName,
+      deptcode: res.deptCode,
+      users: res.users.type === 'string' ? res.users.split(',') : res.users,
+      product: res.product,
+      status: res.status == 1 ? true : false,
+      cieareaid: res.cieAreaId,
+      financeproductid: res.financeProductId,
+    };
+    console.log('backend update service', data);
+    return this.http.post(this.URI+'/dashboard/updateproject', {
+        id: id,
+        projectname: res.projectName,
+        deptcode: res.departmentCode,
+        users: res.users.type === 'string' ? res.users.split(',') : res.users,
+        product: res.product,
+        status: res.status == 1 ? true : false,
+        cieareaid: res.cieAreaId,
+        financeproductid: res.financeProductId,
+      },
+      { observe: 'response' });
+  }
+
 }

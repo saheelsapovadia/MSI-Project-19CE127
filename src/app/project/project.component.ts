@@ -33,6 +33,7 @@ export class ProjectComponent implements OnInit {
     'deptcode',
     'product',
     'status',
+    'action',
   ];
   dataSource!: MatTableDataSource<Project>;
 
@@ -49,7 +50,7 @@ export class ProjectComponent implements OnInit {
     });
   }
 
-  refreshData(){
+  refreshData() {
     this._backend.getProjects().subscribe((data: any) => {
       console.log(data);
       this.dataSource = new MatTableDataSource(data);
@@ -57,10 +58,30 @@ export class ProjectComponent implements OnInit {
       this.dataSource.sort = this.sort;
     });
   }
-  exportBulkProjects(){
-    this._backend.exportBulkProject().subscribe((data:any) => {
-      console.log("export", data)
-    })
+  exportBulkProjects() {
+    this._backend.exportBulkProject().subscribe((data: any) => {
+      console.log('export', data);
+    });
+  }
+  deleteProject(id: any) {
+    console.log('deleting', id);
+    this._backend.deleteProject(id).subscribe((data: any) => {
+      console.log(data);
+      this.refreshData()
+    });
+    this.refreshData()
+  }
+ updateProject(row: any) {
+    console.log('editing', row);
+    this.dialog.open(AddProjectComponent, {
+      data: row,
+      width: '30%',
+    }).afterClosed().subscribe(value => {
+      if(value === 'update'){
+        console.log("closssss")
+        this.refreshData()
+      }
+    });
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -74,6 +95,10 @@ export class ProjectComponent implements OnInit {
     this.dialog.open(AddProjectComponent, {
       data: {},
       width: '30%',
+    }).afterClosed().subscribe(value => {
+      if(value === 'save'){
+        this.refreshData()
+      }
     });
   }
   openBulkDialog() {
@@ -82,5 +107,4 @@ export class ProjectComponent implements OnInit {
       width: '30%',
     });
   }
-
 }

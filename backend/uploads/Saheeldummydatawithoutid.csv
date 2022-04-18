@@ -3,4 +3,4 @@ id,projectname,deptcode,users,product,status,cieareaid,financeproductid
 2,Cloud Infra,CI1,"{Smith, Tyler}",Uptime,TRUE,4,15
 3,Development,DEV23,"{Saheel, Smith, Tyler}",Uptime,FALSE,5,23
 4,Site Reliabilty,SR1,"{Vinay, Smith, Tyler}",Uptime,TRUE,6,20
-5,RocketOS,ROS1,"{Saheel,Harvey,Mike,Donna,Rachel}",,TRUE,1,24
+5,RocketOS,ROS1,"{Saheel,Harvey,Mike,Donna,Rachel}",Operating System,TRUE,1,24
