@@ -73,6 +73,7 @@ export class ProjectComponent implements OnInit {
   }
  updateProject(row: any) {
     console.log('editing', row);
+    const isUpdate = true;
     this.dialog.open(AddProjectComponent, {
       data: row,
       width: '30%',
@@ -93,7 +94,7 @@ export class ProjectComponent implements OnInit {
 
   openAddDialog() {
     this.dialog.open(AddProjectComponent, {
-      data: {},
+      
       width: '30%',
     }).afterClosed().subscribe(value => {
       if(value === 'save'){
@@ -103,8 +104,9 @@ export class ProjectComponent implements OnInit {
   }
   openBulkDialog() {
     this.dialog.open(UploadBulkProjectDialogComponent, {
-      data: {},
+      data: {onSuccess : this.refreshData},
       width: '30%',
+      
     });
   }
 }

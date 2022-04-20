@@ -36,7 +36,6 @@ export class BackendService {
   }
   addProject(res: any) {
     let data = {
-      id: 4,
       projectname: res.projectName,
       deptcode: res.deptCode,
       users: res.users.split(','),
@@ -49,7 +48,6 @@ export class BackendService {
     let response = this.http.post(
       this.URI + '/dashboard/addproject',
       {
-        id: 4,
         projectname: res.projectName,
         deptcode: res.departmentCode,
         users: res.users.split(','),

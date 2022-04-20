@@ -1,6 +1,6 @@
 .login-container {
   display: flex;
-  height: 100%;
+  margin-top: 100px;
   align-items: center;
   justify-content: center;
 }
@@ -8,6 +8,7 @@
   /* background-color: rgb(166, 166, 228); */
   padding: 45px 25px;
   border-radius: 10px;
+  /* border: 2px solid red; */
 }
 
 input.ng-invalid {
@@ -15,4 +16,12 @@ input.ng-invalid {
 }
 .form-field {
   margin-bottom: 0;
+}
+.back{
+  background-image: url('../../assets/background.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  background-clip: border-box;
 }

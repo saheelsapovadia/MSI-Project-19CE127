@@ -21,7 +21,6 @@ class ProjectManagement {
 
   addProject = async (req, res) => {
     let {
-      id,
       projectname,
       deptcode,
       users,
@@ -31,7 +30,6 @@ class ProjectManagement {
       financeproductid,
     } = req.body;
     console.log(
-      id,
       projectname,
       deptcode,
       users,
@@ -42,9 +40,8 @@ class ProjectManagement {
     );
 
     const newProject = await pool.query(
-      "insert into projects(id, projectname, deptcode, users, product, status, cieareaid, financeproductid) values($1,$2,$3,$4,$5,$6,$7,$8) Returning *",
+      "insert into projects(projectname, deptcode, users, product, status, cieareaid, financeproductid) values($1,$2,$3,$4,$5,$6,$7) Returning *",
       [
-        id,
         projectname,
         deptcode,
         users,

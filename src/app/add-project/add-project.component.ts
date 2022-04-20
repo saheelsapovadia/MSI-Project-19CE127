@@ -30,6 +30,7 @@ export class AddProjectComponent implements OnInit {
     private dialogRef: MatDialogRef<AddProjectComponent>,
     @Inject(MAT_DIALOG_DATA) public editData: any
   ) {}
+  update:Boolean = true;
   actionBtn: string = 'Save';
   ngOnInit(): void {
     this.projectForm = this.formBuilder.group({
@@ -42,9 +43,11 @@ export class AddProjectComponent implements OnInit {
       financeProductId: [],
       //Add validators for all the fields
     });
+    
     console.log(this.editData);
     if (this.editData) {
-      this.actionBtn = 'Update';
+      console.log("oninit Updating")
+      this.actionBtn = 'Confirm';
       this.projectForm.controls['projectName'].setValue(
         this.editData.projectname
       );
@@ -58,14 +61,25 @@ export class AddProjectComponent implements OnInit {
       this.projectForm.controls['financeProductId'].setValue(
         this.editData.financeproductid
       );
+    }else{
+      console.log("Save")
     }
   }
-  addProject() {
+
+  test(){
     if(this.editData){
-      this.updateProject()
+      console.log('update')
+      this.updateProject();
     }else{
+      console.log('add')
+      this.addProject()
+    }
+  }
+
+  addProject() {
+      console.log('adding function')
       console.log(this.projectForm.value);
-    let response = this._backend
+      let response = this._backend
       .addProject(this.projectForm.value)
       .subscribe((data: any) => {
         console.log('subscribed data', data);
@@ -76,10 +90,11 @@ export class AddProjectComponent implements OnInit {
         this.dialogRef.close('save');
         return data;
       });
-    console.log('add project response', response);
+      console.log('add project response', response);
     }
-  }
+    
   updateProject(){
+    console.log('updating function')
     console.log(this.projectForm.value);
     let response = this._backend
       .updateProject(this.projectForm.value, this.editData.id)
@@ -90,6 +105,7 @@ export class AddProjectComponent implements OnInit {
         });
         this.projectForm.reset();
         this.dialogRef.close('update');
+        this.actionBtn = "Save"
         return data;
       });
     console.log('update project response', response);

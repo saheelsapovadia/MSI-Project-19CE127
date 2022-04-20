@@ -28,6 +28,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { UploadBulkProjectDialogComponent } from './upload-bulk-project-dialog/upload-bulk-project-dialog.component';
 import {MatCardModule} from '@angular/material/card';
+import { UpdateProjectDialogComponent } from './update-project-dialog/update-project-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import {MatCardModule} from '@angular/material/card';
     BottomsheetComponent,
     ProjectComponent,
     AddProjectComponent,
-    UploadBulkProjectDialogComponent
+    UploadBulkProjectDialogComponent,
+    UpdateProjectDialogComponent
   ],
   imports: [
     BrowserModule,

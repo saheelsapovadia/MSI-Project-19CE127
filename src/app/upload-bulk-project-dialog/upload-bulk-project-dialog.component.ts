@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../backend.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-upload-bulk-project-dialog',
@@ -47,6 +47,7 @@ export class UploadBulkProjectDialogComponent implements OnInit {
       if (data) {
         this._snackBar.open(data.message, 'Cancel', {
           duration: 2500,
+
         });
         this.dialogRef.close();
       }
