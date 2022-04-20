@@ -24,7 +24,7 @@ const loadData = (filename) => {
       // remove the first line: header
       csvData.shift();
       const query =
-        "insert into projects(id,projectname, deptcode, users, product, status, cieareaid, financeproductid) values($1,$2,$3,$4,$5,$6,$7,$8) Returning *";
+        "insert into projects(projectname, deptcode, users, product, status, cieareaid, financeproductid) values($1,$2,$3,$4,$5,$6,$7) Returning *";
 
       pool.connect((err, client, done) => {
         if (err) throw err;

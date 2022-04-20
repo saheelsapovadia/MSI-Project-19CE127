@@ -32,6 +32,9 @@ export class ProjectComponent implements OnInit {
     'projectname',
     'deptcode',
     'product',
+    'users',
+    'cieareaid',
+    'financeproductid',
     'status',
     'action',
   ];

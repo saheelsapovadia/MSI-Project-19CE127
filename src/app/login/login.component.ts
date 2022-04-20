@@ -38,7 +38,9 @@ showPasswordToggle(){
   }
 
   ngOnInit(): void {
-    
+    if(localStorage.getItem('jwtToken')){
+      this.router.navigate(['/dashboard'])
+    }
   }
   // test(){
   //   console.log("submiting..")

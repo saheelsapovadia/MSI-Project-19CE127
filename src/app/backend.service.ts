@@ -38,7 +38,7 @@ export class BackendService {
     let data = {
       projectname: res.projectName,
       deptcode: res.deptCode,
-      users: res.users.split(','),
+      users: res.users.type === 'string' ? res.users.split(',') : res.users,
       product: res.product,
       status: res.status == 1 ? true : false,
       cieareaid: res.cieAreaId,
@@ -77,12 +77,12 @@ export class BackendService {
     return this.http.post(this.URI+'/dashboard/deleteproject', {id:id},{ observe: 'response' });
   }
   updateProject(res:any, id:any){
-    console.log('res', res)
+    console.log('res', res.users)
      let data = {
       id: id,
       projectname: res.projectName,
       deptcode: res.deptCode,
-      users: res.users.type === 'string' ? res.users.split(',') : res.users,
+      users: res.users === 'string' ? res.users.split(',') : res.users,
       product: res.product,
       status: res.status == 1 ? true : false,
       cieareaid: res.cieAreaId,

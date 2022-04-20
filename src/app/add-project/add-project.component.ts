@@ -47,7 +47,7 @@ export class AddProjectComponent implements OnInit {
     console.log(this.editData);
     if (this.editData) {
       console.log("oninit Updating")
-      this.actionBtn = 'Confirm';
+      this.actionBtn = 'Update';
       this.projectForm.controls['projectName'].setValue(
         this.editData.projectname
       );
@@ -95,6 +95,7 @@ export class AddProjectComponent implements OnInit {
     
   updateProject(){
     console.log('updating function')
+    this.projectForm.value.users = this.projectForm.value.users.split(',');
     console.log(this.projectForm.value);
     let response = this._backend
       .updateProject(this.projectForm.value, this.editData.id)
