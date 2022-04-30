@@ -29,6 +29,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { UploadBulkProjectDialogComponent } from './upload-bulk-project-dialog/upload-bulk-project-dialog.component';
 import {MatCardModule} from '@angular/material/card';
 import { UpdateProjectDialogComponent } from './update-project-dialog/update-project-dialog.component';
+import { UserComponent } from './user/user.component';
+import { AddUserComponent } from './add-user/add-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +40,9 @@ import { UpdateProjectDialogComponent } from './update-project-dialog/update-pro
     ProjectComponent,
     AddProjectComponent,
     UploadBulkProjectDialogComponent,
-    UpdateProjectDialogComponent
+    UpdateProjectDialogComponent,
+    UserComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,

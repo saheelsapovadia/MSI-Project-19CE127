@@ -16,7 +16,6 @@ class ProjectManagement {
         res.json(data.rows);
       }
     });
-    console.log("logging results..");
   };
 
   addProject = async (req, res) => {

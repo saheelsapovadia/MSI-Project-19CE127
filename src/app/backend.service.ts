@@ -29,6 +29,67 @@ export class BackendService {
     );
     return response;
   }
+  getUsers() {
+    let response = this.http.get(this.URI + '/getusers');
+    return response;
+  }
+  addUser(res: any) {
+    let data = {
+      username: res.username,
+      email: res.email,
+      password: res.password,
+      role: res.role,
+    };
+    console.log('backend service', data);
+    let response = this.http.post(
+      this.URI + '/adduser',
+      {
+        username: res.username,
+        email: res.email,
+        password: res.password,
+        role: res.role,
+      },
+      { observe: 'response' }
+    );
+    return response;
+  }
+
+  deleteUser(id: any) {
+    console.log('backend delete', id);
+    return this.http.post(
+      this.URI + '/deleteuser',
+      { id: id },
+      { observe: 'response' }
+    );
+  }
+  updateUser(res: any, id: any) {
+    console.log('res', res.users);
+    let data = {
+      id: id,
+      projectname: res.projectName,
+      deptcode: res.deptCode,
+      users: res.users === 'string' ? res.users.split(',') : res.users,
+      product: res.product,
+      status: res.status == 1 ? true : false,
+      cieareaid: res.cieAreaId,
+      financeproductid: res.financeProductId,
+    };
+    console.log('backend update service', data);
+    return this.http.post(
+      this.URI + '/updateuser',
+      {
+        id: id,
+        projectname: res.projectName,
+        deptcode: res.departmentCode,
+        users: res.users.type === 'string' ? res.users.split(',') : res.users,
+        product: res.product,
+        status: res.status == 1 ? true : false,
+        cieareaid: res.cieAreaId,
+        financeproductid: res.financeProductId,
+      },
+      { observe: 'response' }
+    );
+  }
 
   getProjects() {
     let response = this.http.get(this.URI + '/dashboard/getprojects');
@@ -65,20 +126,22 @@ export class BackendService {
     this.helper = new JwtHelperService();
     this.decodedToken = this.helper.decodeToken(this.token);
     this.username = this.decodedToken.user.split(' ')[0];
-    return this.http.post(this.URI + '/dashboard/uploadbulkproject', 
-      formData,
-    );
+    return this.http.post(this.URI + '/dashboard/uploadbulkproject', formData);
   }
-  exportBulkProject(){
+  exportBulkProject() {
     return this.http.get(this.URI + '/dashboard/exportbulkprojects');
   }
-  deleteProject(id:any){
-    console.log('backend delete', id)
-    return this.http.post(this.URI+'/dashboard/deleteproject', {id:id},{ observe: 'response' });
+  deleteProject(id: any) {
+    console.log('backend delete', id);
+    return this.http.post(
+      this.URI + '/dashboard/deleteproject',
+      { id: id },
+      { observe: 'response' }
+    );
   }
-  updateProject(res:any, id:any){
-    console.log('res', res.users)
-     let data = {
+  updateProject(res: any, id: any) {
+    console.log('res', res.users);
+    let data = {
       id: id,
       projectname: res.projectName,
       deptcode: res.deptCode,
@@ -89,7 +152,9 @@ export class BackendService {
       financeproductid: res.financeProductId,
     };
     console.log('backend update service', data);
-    return this.http.post(this.URI+'/dashboard/updateproject', {
+    return this.http.post(
+      this.URI + '/dashboard/updateproject',
+      {
         id: id,
         projectname: res.projectName,
         deptcode: res.departmentCode,
@@ -99,7 +164,7 @@ export class BackendService {
         cieareaid: res.cieAreaId,
         financeproductid: res.financeProductId,
       },
-      { observe: 'response' });
+      { observe: 'response' }
+    );
   }
-
 }

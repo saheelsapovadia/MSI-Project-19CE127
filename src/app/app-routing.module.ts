@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { ProjectComponent } from './project/project.component';
 import { ProjectsComponent } from './projectmanagement/projects/projects.component';
+import { UserComponent } from './user/user.component';
 import { UsersComponent } from './usermanagement/users/users.component';
 const routes: Routes = [
    {
@@ -24,7 +25,7 @@ const routes: Routes = [
     children: [
       {
         path: 'users',
-        component: UsersComponent,
+        component: UserComponent,
       },
       {
         path: 'projects',
